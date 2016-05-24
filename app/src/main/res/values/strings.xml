@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Campionat LLiga</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_equips">Equips</string>
+    <string name="action_add">Afegir Equip</string>
+    <string name="title_activity_afegir_equip">Afegir Equip</string>
+    <string name="action_save">Desa</string>
+    <string name="title_activity_equip">Equip</string>
+    <string name="title_activity_anadir_partido">AnadirPartido</string>
+</resources>
