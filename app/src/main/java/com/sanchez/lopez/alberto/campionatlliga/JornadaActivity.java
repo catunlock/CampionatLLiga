@@ -1,6 +1,7 @@
 package com.sanchez.lopez.alberto.campionatlliga;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -29,6 +30,7 @@ public class JornadaActivity extends AppCompatActivity {
     private Realm realm;
 
     private ListView listPartit;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class JornadaActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        context = this;
 
         // Create a RealmConfiguration which is to locate Realm file in package's "files" directory.
         realmConfig = new RealmConfiguration.Builder(this).build();
@@ -45,9 +48,9 @@ public class JornadaActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                Intent intent = new Intent(context, AnadirPartido.class);
+                startActivity(intent);
             }
         });
 

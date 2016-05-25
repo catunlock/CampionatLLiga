@@ -9,4 +9,5 @@
     <string name="title_activity_anadir_partido">AnadirPartido</string>
     <string name="action_calendar">Selecciona Data</string>
     <string name="title_activity_jornada">Jornada</string>
+    <string name="title_activity_jornadas">Jornadas</string>
 </resources>

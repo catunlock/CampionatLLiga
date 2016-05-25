@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openAfegirJornadaActivity(View view) {
-        Intent intent = new Intent(this, JornadaActivity.class);
+        Intent intent = new Intent(this, Jornadas.class);
         startActivity(intent);
     }
 }

@@ -56,6 +56,10 @@
             android:name=".JornadaActivity"
             android:label="@string/title_activity_jornada"
             android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Jornadas"
+            android:label="@string/title_activity_jornadas"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

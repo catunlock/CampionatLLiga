@@ -482,7 +482,7 @@ public class AnadirPartido extends AppCompatActivity {
         realm.commitTransaction();
 
         if (tanca) {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, JornadaActivity.class);
             startActivity(intent);
         }
 
