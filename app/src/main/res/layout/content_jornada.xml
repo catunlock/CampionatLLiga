@@ -12,4 +12,55 @@
     tools:context="com.sanchez.lopez.alberto.campionatlliga.JornadaActivity"
     tools:showIn="@layout/activity_jornada">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Data:"
+        android:id="@+id/textView19"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="--/--/----"
+        android:id="@+id/textView20"
+        android:layout_alignBottom="@+id/textView19"
+        android:layout_toEndOf="@+id/textView19" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Num:"
+        android:id="@+id/textView22"
+        android:layout_alignBottom="@+id/textView20"
+        android:layout_toStartOf="@+id/textView23" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        android:id="@+id/textView23"
+        android:layout_alignBottom="@+id/textView22"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Partits"
+        android:id="@+id/textView24"
+        android:layout_below="@+id/textView20"
+        android:layout_alignParentStart="true"
+        android:textColor="#000000" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listPartits"
+        android:layout_below="@+id/textView24"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

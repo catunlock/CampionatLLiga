@@ -50,11 +50,12 @@
         <activity
             android:name=".AnadirPartido"
             android:label="@string/title_activity_anadir_partido"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".JornadaActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".JornadaActivity"
             android:label="@string/title_activity_jornada"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

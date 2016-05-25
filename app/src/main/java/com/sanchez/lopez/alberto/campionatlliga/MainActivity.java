@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.sanchez.lopez.alberto.campionatlliga.model.Jornada;
+
 import io.realm.RealmConfiguration;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openAfegirPartitActivity(View view) {
         Intent intent = new Intent(this, AnadirPartido.class);
+        startActivity(intent);
+    }
+
+    public void openAfegirJornadaActivity(View view) {
+        Intent intent = new Intent(this, JornadaActivity.class);
         startActivity(intent);
     }
 }
