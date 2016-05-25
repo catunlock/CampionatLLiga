@@ -371,7 +371,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Gols"
                     android:id="@+id/textView18"
-                    android:layout_marginLeft="180dp"
+                    android:layout_marginLeft="170dp"
                     android:textColor="#000000" />
             </LinearLayout>
 
@@ -941,7 +941,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Gols"
                     android:id="@+id/textView16"
-                    android:layout_marginLeft="180dp"
+                    android:layout_marginLeft="170dp"
                     android:textColor="#000000" />
             </LinearLayout>
 

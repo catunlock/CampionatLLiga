@@ -1,9 +1,14 @@
 package com.sanchez.lopez.alberto.campionatlliga;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -13,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -20,6 +26,8 @@ import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
 import com.sanchez.lopez.alberto.campionatlliga.model.Partido;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,8 +44,11 @@ public class AnadirPartido extends AppCompatActivity {
     private TextView lblGolsCasa;
     private TextView lblGolsFora;
 
+    private Dialog dialogData;
+
     private Equip equipCasa;
     private Equip equipFora;
+    private Date date;
 
     private HashMap<String, Equip> mapEquips;
 
@@ -68,9 +79,10 @@ public class AnadirPartido extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("--/--/----");
 
         getAllViewsById();
-
+        createAlertDialog();
 
         // Create a RealmConfiguration which is to locate Realm file in package's "files" directory.
         realmConfig = new RealmConfiguration.Builder(this).build();
@@ -152,7 +164,7 @@ public class AnadirPartido extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_afegir_equip, menu);
+        getMenuInflater().inflate(R.menu.menu_anadir_partido, menu);
         return true;
     }
 
@@ -168,31 +180,17 @@ public class AnadirPartido extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_calendar) {
+            showDatePicker();
+
+        }
+
         if (id == R.id.action_save) {
-            realm.beginTransaction();
-
-            Partido p = new Partido();
-            p.setEquipA(equipCasa);
-            p.setEquipB(equipFora);
-
-            p.setGolsA(Integer.valueOf(lblGolsCasa.getText().toString()));
-            p.setGolsB(Integer.valueOf(lblGolsFora.getText().toString()));
-
-            for (int i = 0; i < 5; ++i) {
-                p.getEquipA().getTitulars().get(i).addGols(Integer.valueOf(lblGolsTitularsCasa.get(i).getText().toString()));
-                p.getEquipB().getTitulars().get(i).addGols(Integer.valueOf(lblGolsTitularsFora.get(i).getText().toString()));
+            if (date != null) {
+                guardarPartit(true);
+            }else {
+                dialogData.show();
             }
-
-            for (int i = 0; i < 7; ++i) {
-                p.getEquipA().getReservas().get(i).addGols(Integer.valueOf(lblGolsReservaCasa.get(i).getText().toString()));
-                p.getEquipB().getReservas().get(i).addGols(Integer.valueOf(lblGolsReservaFora.get(i).getText().toString()));
-            }
-
-            realm.copyToRealm(p);
-            realm.commitTransaction();
-
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
 
             return true;
         }
@@ -405,4 +403,88 @@ public class AnadirPartido extends AppCompatActivity {
         }
     }
 
+    private void showDatePicker() {
+        DatePickerFragment date = new DatePickerFragment();
+        /**
+         * Set Up Current Date Into dialog
+         */
+        Calendar calender = Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("year", calender.get(Calendar.YEAR));
+        args.putInt("month", calender.get(Calendar.MONTH));
+        args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+        date.setArguments(args);
+        /**
+         * Set Call back to capture selected date
+         */
+        date.setCallBack(ondate);
+        date.show(getSupportFragmentManager(), "Date Picker");
+    }
+
+    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+        String fecha = String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear+1)
+                + "/" + String.valueOf(year);
+        Log.println(Log.DEBUG,"FECHA ELEGIDA", fecha);
+
+        setTitle(fecha);
+
+        date = new Date(year, monthOfYear+1, dayOfMonth);
+        }
+    };
+
+    private void createAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("Ha de seleccionar quan s'ha jugat el partit.").setTitle("Seleccionar data");
+        builder.setPositiveButton("Seleccionar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                showDatePicker();
+                //guardarPartit(true);
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        dialogData = builder.create();
+    }
+
+    private void guardarPartit(boolean tanca) {
+        realm.beginTransaction();
+
+        Partido p = new Partido();
+        p.setEquipA(equipCasa);
+        p.setEquipB(equipFora);
+        p.setDataRealitzat(date);
+
+        p.setGolsA(Integer.valueOf(lblGolsCasa.getText().toString()));
+        p.setGolsB(Integer.valueOf(lblGolsFora.getText().toString()));
+
+        for (int i = 0; i < 5; ++i) {
+            p.getEquipA().getTitulars().get(i).addGols(Integer.valueOf(lblGolsTitularsCasa.get(i).getText().toString()));
+            p.getEquipB().getTitulars().get(i).addGols(Integer.valueOf(lblGolsTitularsFora.get(i).getText().toString()));
+        }
+
+        for (int i = 0; i < 7; ++i) {
+            p.getEquipA().getReservas().get(i).addGols(Integer.valueOf(lblGolsReservaCasa.get(i).getText().toString()));
+            p.getEquipB().getReservas().get(i).addGols(Integer.valueOf(lblGolsReservaFora.get(i).getText().toString()));
+        }
+
+        realm.copyToRealm(p);
+        realm.commitTransaction();
+
+        if (tanca) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+
+    }
 }
