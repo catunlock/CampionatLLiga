@@ -5,9 +5,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,7 +20,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
+import com.sanchez.lopez.alberto.campionatlliga.model.Jornada;
 import com.sanchez.lopez.alberto.campionatlliga.model.Partido;
+import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.JornadaActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -458,6 +457,11 @@ public class AnadirPartido extends AppCompatActivity {
     }
 
     private void guardarPartit(boolean tanca) {
+        Intent intent = getIntent();
+        int numJornada = intent.getIntExtra("numJornada",-1);
+
+        Jornada j = realm.where(Jornada.class).equalTo("numJornada", numJornada).findFirst();
+
         realm.beginTransaction();
 
         Partido p = new Partido();
@@ -478,12 +482,14 @@ public class AnadirPartido extends AppCompatActivity {
             p.getEquipB().getReservas().get(i).addGols(Integer.valueOf(lblGolsReservaFora.get(i).getText().toString()));
         }
 
-        realm.copyToRealm(p);
+
+        j.getPartidos().add(p);
         realm.commitTransaction();
 
         if (tanca) {
-            Intent intent = new Intent(this, JornadaActivity.class);
-            startActivity(intent);
+            Intent intentTanca = new Intent(this, JornadaActivity.class);
+            intentTanca.putExtra("numJornada", j.getNumJornada());
+            startActivity(intentTanca);
         }
 
     }

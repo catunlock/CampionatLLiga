@@ -10,4 +10,5 @@
     <string name="action_calendar">Selecciona Data</string>
     <string name="title_activity_jornada">Jornada</string>
     <string name="title_activity_jornadas">Jornadas</string>
+    <string name="title_activity_afegir_jornada">AfegirJornada</string>
 </resources>

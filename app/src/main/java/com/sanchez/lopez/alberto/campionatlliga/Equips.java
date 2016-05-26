@@ -17,8 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
+import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.EquipActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;

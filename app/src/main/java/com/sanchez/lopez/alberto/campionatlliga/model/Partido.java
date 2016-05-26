@@ -15,17 +15,23 @@ public class Partido extends RealmObject{
     Equip equipB;
     int golsA;
     int golsB;
+    long dataCreacio;
 
     public Partido() {
-
+        dataCreacio = System.nanoTime();
     }
 
     public Partido(Date dataRealitzat, Equip equipA, Equip equipB, int golsA, int golsB) {
+        this();
         this.dataRealitzat = dataRealitzat;
         this.equipA = equipA;
         this.equipB = equipB;
         this.golsA = golsA;
         this.golsB = golsB;
+    }
+
+    public long getDataCreacio() {
+        return dataCreacio;
     }
 
     public Date getDataRealitzat() {

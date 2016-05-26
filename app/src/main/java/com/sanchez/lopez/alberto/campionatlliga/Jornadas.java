@@ -3,8 +3,6 @@ package com.sanchez.lopez.alberto.campionatlliga;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -12,13 +10,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
 import com.sanchez.lopez.alberto.campionatlliga.model.Jornada;
+import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.EquipActivity;
+import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.JornadaActivity;
 
 import java.util.List;
 
@@ -31,6 +31,7 @@ public class Jornadas extends AppCompatActivity {
 
     private RealmConfiguration realmConfig;
     private Realm realm;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class Jornadas extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        context = this;
 
         // Create a RealmConfiguration which is to locate Realm file in package's "files" directory.
         realmConfig = new RealmConfiguration.Builder(this).build();
@@ -46,14 +48,30 @@ public class Jornadas extends AppCompatActivity {
 
         listJornadas = (ListView) findViewById(R.id.listJornadas);
 
+
         final MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this);
         listJornadas.setAdapter(adapter);
+
+        listJornadas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view,
+                                    int position, long id)
+            {
+                final Jornada jornada = (Jornada) parent.getItemAtPosition(position);
+
+                Intent intent = new Intent(context, JornadaActivity.class);
+                intent.putExtra("numJornada", jornada.getNumJornada());
+                startActivity(intent);
+            }
+
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_afegir_equip, menu);
+        getMenuInflater().inflate(R.menu.menu_jornadas, menu);
         return true;
     }
 
@@ -70,7 +88,7 @@ public class Jornadas extends AppCompatActivity {
         }
 
         if (id == R.id.action_add) {
-            Intent intent = new Intent(this, JornadaActivity.class);
+            Intent intent = new Intent(this, AfegirJornada.class);
             startActivity(intent);
         }
 
@@ -112,9 +130,9 @@ public class Jornadas extends AppCompatActivity {
 
             Jornada j = jornadas.get(position);
 
-            lblNumJornada.setText(j.getNumJornada());
+            lblNumJornada.setText(String.valueOf(j.getNumJornada()));
             lblData.setText(j.getData().getDay()+"/"+j.getData().getMonth()+"/"+j.getData().getYear());
-            lblNumPartidos.setText(j.getPartidos().size());
+            lblNumPartidos.setText(String.valueOf(j.getPartidos().size()));
 
             return rowView;
         }

@@ -1,4 +1,4 @@
-package com.sanchez.lopez.alberto.campionatlliga;
+package com.sanchez.lopez.alberto.campionatlliga.visualizadoras;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.sanchez.lopez.alberto.campionatlliga.R;
 import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
 import com.sanchez.lopez.alberto.campionatlliga.model.Jugador;
 
