@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
-import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.EquipActivity;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -74,7 +73,7 @@ public class AfegirEquip extends AppCompatActivity {
             realm.copyToRealm(e);
             realm.commitTransaction();
 
-            Intent intent = new Intent(this, EquipActivity.class);
+            Intent intent = new Intent(this, AfegirEquipJugadors.class);
             intent.putExtra("nomEquip", nomEquip);
             intent.putExtra("locked", false);
 

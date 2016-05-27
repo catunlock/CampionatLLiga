@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".visualizadoras.EquipActivity"
+    tools:context=".AfegirEquipJugadors"
     tools:showIn="@layout/activity_equip">
 
     <ImageView
@@ -70,358 +70,137 @@
             android:layout_height="match_parent"
             android:baselineAligned="false">
 
-            <LinearLayout
-                android:orientation="horizontal"
+            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text=""
+                android:hint="Nom Titular"
+                android:ems="10"
+                android:id="@+id/txtTitular1"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentStart="true" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Titulars"
-                    android:id="@+id/textView4"
-                    android:layout_alignParentStart="true" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gols"
-                    android:id="@+id/lblGols"
-                    android:layout_marginLeft="172dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nom Titular"
-                    android:ems="10"
-                    android:id="@+id/txtNomTitular1"
-                    android:layout_below="@+id/scrollView"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="79dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:ems="10"
-                    android:id="@+id/txtGolsTitular1"
-                    android:hint="Gols"
-                    android:layout_alignTop="@+id/txtNomTitular1"
-                    android:layout_toEndOf="@+id/txtNomTitular1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nom Titular"
-                    android:ems="10"
-                    android:id="@+id/txtNomTitular2"
-                    android:layout_below="@+id/scrollView"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="79dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:ems="10"
-                    android:id="@+id/txtGolsTitular2"
-                    android:hint="Gols"
-                    android:layout_alignTop="@+id/txtNomTitular2"
-                    android:layout_toEndOf="@+id/txtNomTitular2" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nom Titular"
-                    android:ems="10"
-                    android:id="@+id/txtNomTitular3"
-                    android:layout_below="@+id/scrollView"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="79dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:ems="10"
-                    android:id="@+id/txtGolsTitular3"
-                    android:hint="Gols"
-                    android:layout_alignTop="@+id/txtNomTitular3"
-                    android:layout_toEndOf="@+id/txtNomTitular3" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nom Titular"
-                    android:ems="10"
-                    android:id="@+id/txtNomTitular4"
-                    android:layout_below="@+id/scrollView"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="79dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:ems="10"
-                    android:id="@+id/txtGolsTitular4"
-                    android:hint="Gols"
-                    android:layout_alignTop="@+id/txtNomTitular4"
-                    android:layout_toEndOf="@+id/txtNomTitular4" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nom Titular"
-                    android:ems="10"
-                    android:id="@+id/txtNomTitular5"
-                    android:layout_below="@+id/scrollView"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="79dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:ems="10"
-                    android:id="@+id/txtGolsTitular5"
-                    android:hint="Gols"
-                    android:layout_alignTop="@+id/txtNomTitular5"
-                    android:layout_toEndOf="@+id/txtNomTitular5" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
+            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text=""
+                android:hint="Nom Titular"
+                android:ems="10"
+                android:id="@+id/txtTitular2"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentStart="true" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Reservas"
-                    android:id="@+id/textView5" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text=""
+                android:hint="Nom Titular"
+                android:ems="10"
+                android:id="@+id/txtTitular3"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentStart="true" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gols"
-                    android:id="@+id/textView6"
-                    android:layout_marginLeft="162dp" />
-            </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text=""
+                android:hint="Nom Titular"
+                android:ems="10"
+                android:id="@+id/txtTitular4"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentStart="true" />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text=""
+                android:hint="Nom Titular"
+                android:ems="10"
+                android:id="@+id/txtTitular5"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentStart="true" />
 
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nom Reserva"
-                    android:ems="10"
-                    android:id="@+id/txtNomReserva1"
-                    android:layout_below="@+id/scrollView"
-                    android:layout_alignParentStart="true" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Nom Reserva"
+                android:text=""
+                android:ems="10"
+                android:id="@+id/txtReserva1"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentStart="true" />
 
-                <EditText
-                    android:layout_width="79dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:ems="10"
-                    android:id="@+id/txtGolsReserva1"
-                    android:hint="Gols"
-                    android:layout_alignTop="@+id/txtNomReserva1"
-                    android:layout_toEndOf="@+id/txtNomReserva1" />
-            </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Nom Reserva"
+                android:text=""
+                android:ems="10"
+                android:id="@+id/txtReserva2"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentStart="true" />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Nom Reserva"
+                android:text=""
+                android:ems="10"
+                android:id="@+id/txtReserva3"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentStart="true" />
 
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nom Reserva"
-                    android:ems="10"
-                    android:id="@+id/txtNomReserva2"
-                    android:layout_below="@+id/scrollView"
-                    android:layout_alignParentStart="true" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Nom Reserva"
+                android:text=""
+                android:ems="10"
+                android:id="@+id/txtReserva4"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentStart="true" />
 
-                <EditText
-                    android:layout_width="79dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:ems="10"
-                    android:id="@+id/txtGolsReserva2"
-                    android:hint="Gols"
-                    android:layout_alignTop="@+id/txtNomReserva1"
-                    android:layout_toEndOf="@+id/txtNomReserva1" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Nom Reserva"
+                android:text=""
+                android:ems="10"
+                android:id="@+id/txtReserva5"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentStart="true" />
 
-            </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Nom Reserva"
+                android:text=""
+                android:ems="10"
+                android:id="@+id/txtReserva6"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentStart="true" />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nom Reserva"
-                    android:ems="10"
-                    android:id="@+id/txtNomReserva3"
-                    android:layout_below="@+id/scrollView"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="79dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:ems="10"
-                    android:id="@+id/txtGolsReserva3"
-                    android:hint="Gols"
-                    android:layout_alignTop="@+id/txtNomReserva3"
-                    android:layout_toEndOf="@+id/txtNomReserva3" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nom Reserva"
-                    android:ems="10"
-                    android:id="@+id/txtNomReserva4"
-                    android:layout_below="@+id/scrollView"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="79dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:ems="10"
-                    android:id="@+id/txtGolsReserva4"
-                    android:hint="Gols"
-                    android:layout_alignTop="@+id/txtNomReserva4"
-                    android:layout_toEndOf="@+id/txtNomReserva4" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nom Reserva"
-                    android:ems="10"
-                    android:id="@+id/txtNomReserva5"
-                    android:layout_below="@+id/scrollView"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="79dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:ems="10"
-                    android:id="@+id/txtGolsReserva5"
-                    android:hint="Gols"
-                    android:layout_alignTop="@+id/txtNomReserva5"
-                    android:layout_toEndOf="@+id/txtNomReserva5" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nom Reserva"
-                    android:ems="10"
-                    android:id="@+id/txtNomReserva6"
-                    android:layout_below="@+id/scrollView"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="79dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:ems="10"
-                    android:id="@+id/txtGolsReserva6"
-                    android:hint="Gols"
-                    android:layout_alignTop="@+id/txtNomReserva6"
-                    android:layout_toEndOf="@+id/txtNomReserva6" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Nom Reserva"
-                    android:ems="10"
-                    android:id="@+id/txtNomReserva7"
-                    android:layout_below="@+id/scrollView"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="79dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned"
-                    android:ems="10"
-                    android:id="@+id/txtGolsReserva7"
-                    android:hint="Gols"
-                    android:layout_alignTop="@+id/txtNomReserva7"
-                    android:layout_toEndOf="@+id/txtNomReserva7" />
-            </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Nom Reserva"
+                android:text=""
+                android:ems="10"
+                android:id="@+id/txtReserva7"
+                android:layout_below="@+id/scrollView"
+                android:layout_alignParentStart="true" />
 
         </LinearLayout>
     </ScrollView>

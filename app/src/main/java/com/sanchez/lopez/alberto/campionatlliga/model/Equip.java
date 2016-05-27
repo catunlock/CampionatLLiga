@@ -66,12 +66,12 @@ public class Equip extends RealmObject {
 
         titulars = new RealmList<>();
         for (int i = 0; i < NUM_TITULARS; ++i) {
-            titulars.add(new Jugador("Nom Titular", 0, this));
+            titulars.add(new Jugador("", 0, this));
         }
 
         reservas = new RealmList<>();
         for (int i = 0; i < NUM_RESERVAS; ++i) {
-            reservas.add(new Jugador("Nom Reserva", 0, this));
+            reservas.add(new Jugador("", 0, this));
         }
 
         punts = 0;
@@ -79,7 +79,7 @@ public class Equip extends RealmObject {
 
     @Override
     public String toString() {
-        return "EquipActivity{" +
+        return "AfegirEquipJugadors{" +
                 "nom='" + nom + '\'' +
                 ", ciutat='" + ciutat + '\'' +
                 ", pathEscut='" + pathEscut + '\'' +

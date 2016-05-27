@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
-import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.EquipActivity;
+import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.EquipViewer;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public class Equips extends AppCompatActivity {
             {
                 final Equip equip = (Equip) parent.getItemAtPosition(position);
 
-                Intent intent = new Intent(equips, EquipActivity.class);
+                Intent intent = new Intent(equips, EquipViewer.class);
                 intent.putExtra("nomEquip", equip.getNom());
                 startActivity(intent);
             }

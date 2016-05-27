@@ -15,9 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
 import com.sanchez.lopez.alberto.campionatlliga.model.Jornada;
-import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.EquipActivity;
 import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.JornadaActivity;
 
 import java.util.List;

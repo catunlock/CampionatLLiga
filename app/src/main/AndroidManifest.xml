@@ -43,7 +43,7 @@
             android:parentActivityName=".Equips"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".visualizadoras.EquipActivity"
+            android:name=".AfegirEquipJugadors"
             android:label="@string/title_activity_equip"
             android:parentActivityName=".Equips"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -75,6 +75,11 @@
             android:name=".Jugadors"
             android:label="@string/title_activity_jugadors"
             android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".visualizadoras.EquipViewer"
+            android:label="@string/title_activity_equip_viewer"
+            android:parentActivityName=".Equips"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
