@@ -12,19 +12,27 @@ public class Jugador extends RealmObject {
     @Required
     String nom;
     int gols;
+    Equip equip;
 
     public Jugador() {
-
-    }
-
-    public Jugador(String nom) {
-        this.nom = nom;
+        equip = null;
         gols = 0;
     }
 
-    public Jugador(String nom, int gols) {
+    public Jugador(String nom) {
+        this();
         this.nom = nom;
+
+    }
+
+    public Jugador(String nom, int gols) {
+        this(nom);
         this.gols = gols;
+    }
+
+    public Jugador(String nom, int gols, Equip equip){
+        this(nom,gols);
+        this.equip = equip;
     }
 
     public int getGols() {
@@ -43,5 +51,13 @@ public class Jugador extends RealmObject {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public Equip getEquip() {
+        return equip;
+    }
+
+    public void setEquip(Equip equip) {
+        this.equip = equip;
     }
 }

@@ -20,7 +20,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:onClick="openAfegirPartitActivity" />
+        android:onClick="openClassificacio" />
 
     <Button
         android:layout_width="wrap_content"

@@ -63,4 +63,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Jornadas.class);
         startActivity(intent);
     }
+
+    public void openClassificacio(View view) {
+        Intent intent = new Intent(this, Classificacio.class);
+        startActivity(intent);
+    }
 }

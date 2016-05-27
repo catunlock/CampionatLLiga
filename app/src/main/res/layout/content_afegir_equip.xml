@@ -15,7 +15,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtNomEquip"
+        android:id="@+id/lblNomEquip"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -25,9 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtNomCiutat"
-        android:layout_below="@+id/txtNomEquip"
+        android:layout_below="@+id/lblNomEquip"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/txtNomEquip"
+        android:layout_alignEnd="@+id/lblNomEquip"
         android:hint="Ciutat"
         android:layout_marginTop="5dp" />
 

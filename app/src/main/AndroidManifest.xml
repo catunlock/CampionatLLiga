@@ -65,6 +65,11 @@
         <activity
             android:name=".AfegirJornada"
             android:label="@string/title_activity_afegir_jornada"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Classificacio"
+            android:label="@string/title_activity_classificacio"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

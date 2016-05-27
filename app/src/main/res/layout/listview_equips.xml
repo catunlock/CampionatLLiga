@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Nom Equip"
-                android:id="@+id/txtNomEquip"
+                android:id="@+id/lblNomEquip"
                 android:layout_marginTop="15dp" />
 
             <TextView

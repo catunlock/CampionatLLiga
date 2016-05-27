@@ -482,6 +482,18 @@ public class AnadirPartido extends AppCompatActivity {
             p.getEquipB().getReservas().get(i).addGols(Integer.valueOf(lblGolsReservaFora.get(i).getText().toString()));
         }
 
+        if (p.getGolsA() == p.getGolsB()) {
+            p.getEquipA().empata();
+            p.getEquipB().empata();
+        }else {
+            if (p.getGolsA() > p.getGolsB()) {
+                p.getEquipA().guanya();
+                p.getEquipB().perd();
+            }else {
+                p.getEquipB().guanya();
+                p.getEquipA().perd();
+            }
+        }
 
         j.getPartidos().add(p);
         realm.commitTransaction();

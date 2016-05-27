@@ -36,7 +36,7 @@ public class AfegirEquip extends AppCompatActivity {
         realmConfig = new RealmConfiguration.Builder(this).build();
         realm = Realm.getInstance(realmConfig);
 
-        txtNomEquip = (EditText) findViewById(R.id.txtNomEquip);
+        txtNomEquip = (EditText) findViewById(R.id.lblNomEquip);
         txtNomCiutat = (EditText) findViewById(R.id.txtNomCiutat);
         ibtnEscut = (ImageButton) findViewById(R.id.ibtnEscut);
 

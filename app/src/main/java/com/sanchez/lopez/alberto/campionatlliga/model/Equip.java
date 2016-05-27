@@ -23,6 +23,35 @@ public class Equip extends RealmObject {
     String pathEscut;
 
     int punts;
+    int guanyats;
+    int perduts;
+    int empatats;
+
+    public int getGuanyats() {
+        return guanyats;
+    }
+
+    public int getPerduts() {
+        return perduts;
+    }
+
+    public int getEmpatats() {
+        return empatats;
+    }
+
+    public void empata() {
+        empatats += 1;
+        punts += 1;
+    }
+
+    public void perd() {
+        perduts += 1;
+    }
+
+    public void guanya() {
+        guanyats += 1;
+        punts += 3;
+    }
 
     RealmList<Jugador> titulars;
     RealmList<Jugador> reservas;
@@ -37,12 +66,12 @@ public class Equip extends RealmObject {
 
         titulars = new RealmList<>();
         for (int i = 0; i < NUM_TITULARS; ++i) {
-            titulars.add(new Jugador("Nom Titular", 0));
+            titulars.add(new Jugador("Nom Titular", 0, this));
         }
 
         reservas = new RealmList<>();
         for (int i = 0; i < NUM_RESERVAS; ++i) {
-            reservas.add(new Jugador("Nom Reserva", 0));
+            reservas.add(new Jugador("Nom Reserva", 0, this));
         }
 
         punts = 0;
