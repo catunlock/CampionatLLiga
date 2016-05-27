@@ -2,6 +2,8 @@ package com.sanchez.lopez.alberto.campionatlliga;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sanchez.lopez.alberto.campionatlliga.model.Equip;
+import com.sanchez.lopez.alberto.campionatlliga.model.Jugador;
 
 import java.util.List;
 
@@ -20,9 +23,9 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.Sort;
 
-public class Classificacio extends AppCompatActivity {
+public class Jugadors extends AppCompatActivity {
 
-    ListView listClassificacio;
+    ListView listJugadors;
 
     private RealmConfiguration realmConfig;
     private Realm realm;
@@ -30,12 +33,12 @@ public class Classificacio extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_classificacio);
+        setContentView(R.layout.activity_jugadors);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        listClassificacio = (ListView) findViewById(R.id.listClasificacio);
+        listJugadors = (ListView) findViewById(R.id.listJugadors);
 
         // Create a RealmConfiguration which is to locate Realm file in package's "files" directory.
         realmConfig = new RealmConfiguration.Builder(this).build();
@@ -43,19 +46,19 @@ public class Classificacio extends AppCompatActivity {
 
         final MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this);
 
-        listClassificacio.setAdapter(adapter);
+        listJugadors.setAdapter(adapter);
+
     }
 
-    private class MySimpleArrayAdapter extends ArrayAdapter<Equip> {
+    private class MySimpleArrayAdapter extends ArrayAdapter<Jugador> {
         private final Context context;
-        private final List<Equip> equips;
+        private final List<Jugador> jugadors;
 
         public MySimpleArrayAdapter(Context context) {
             super(context, -1);
-            equips = realm.where(Equip.class).findAll().sort("punts", Sort.DESCENDING);
-            this.addAll(equips);
+            jugadors = realm.where(Jugador.class).findAll().sort("gols", Sort.DESCENDING);
+            this.addAll(jugadors);
             this.context = context;
-
         }
 
         private int getResourceId(String pVariableName, String pResourcename, String pPackageName)
@@ -73,29 +76,22 @@ public class Classificacio extends AppCompatActivity {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            View rowView = inflater.inflate(R.layout.listview_clasificacio, parent, false);
-            TextView lblPunts = (TextView) rowView.findViewById(R.id.lblPunts);
-            TextView lblNomEquip = (TextView) rowView.findViewById(R.id.lblNomJugador);
-            TextView lblCiutatEquip = (TextView) rowView.findViewById(R.id.lblCiutatEquip);
-            TextView lblWins = (TextView) rowView.findViewById(R.id.lblWins);
-            TextView lblLoses = (TextView) rowView.findViewById(R.id.lblLoses);
-            TextView lblEmpates = (TextView) rowView.findViewById(R.id.lblEmpates);
-            ImageView imgEscut = (ImageView) rowView.findViewById(R.id.imgEscut);
+            View rowView = inflater.inflate(R.layout.listview_jugadors, parent, false);
+            TextView lblPosition = (TextView) rowView.findViewById(R.id.lblPosition);
+            TextView lblNomJugador = (TextView) rowView.findViewById(R.id.lblNomJugador);
+            TextView lblNomEquip = (TextView) rowView.findViewById(R.id.lblNomEquip);
+            TextView lblGols = (TextView) rowView.findViewById(R.id.lblGols);
 
-            Equip e = equips.get(position);
+            Jugador j = jugadors.get(position);
 
-            lblPunts.setText(String.valueOf(e.getPunts()));
-            lblNomEquip.setText(e.getNom());
-            lblCiutatEquip.setText(e.getCiutat());
-            lblWins.setText(String.valueOf(e.getGuanyats()));
-            lblLoses.setText(String.valueOf(e.getPerduts()));
-            lblEmpates.setText(String.valueOf(e.getEmpatats()));
+            lblPosition.setText(String.valueOf(position));
+            lblNomJugador.setText(j.getNom());
+            lblNomEquip.setText(j.getEquip().getNom());
+            lblGols.setText(String.valueOf(j.getGols()));
 
-            int idResourceEscut = Integer.valueOf(e.getPathEscut());
-            imgEscut.setImageResource(idResourceEscut);
-            imgEscut.setTag(idResourceEscut);
 
             return rowView;
         }
     }
+
 }

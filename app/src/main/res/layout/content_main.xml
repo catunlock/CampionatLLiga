@@ -41,4 +41,14 @@
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/btnEquips"
         android:onClick="openAfegirJornadaActivity" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugadors"
+        android:id="@+id/button"
+        android:layout_below="@+id/btnJornades"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/btnJornades"
+        android:onClick="openJugadorsActivity" />
 </RelativeLayout>

@@ -68,4 +68,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Classificacio.class);
         startActivity(intent);
     }
+
+    public void openJugadorsActivity(View view) {
+        Intent intent = new Intent(this, Jugadors.class);
+        startActivity(intent);
+    }
 }

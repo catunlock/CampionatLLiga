@@ -70,6 +70,11 @@
             android:name=".Classificacio"
             android:label="@string/title_activity_classificacio"
             android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Jugadors"
+            android:label="@string/title_activity_jugadors"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

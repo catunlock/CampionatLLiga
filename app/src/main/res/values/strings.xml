@@ -12,4 +12,5 @@
     <string name="title_activity_jornadas">Jornadas</string>
     <string name="title_activity_afegir_jornada">AfegirJornada</string>
     <string name="title_activity_classificacio">Classificacio</string>
+    <string name="title_activity_jugadors">Jugadors</string>
 </resources>

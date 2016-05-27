@@ -122,7 +122,7 @@ public class Equips extends AppCompatActivity {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             View rowView = inflater.inflate(R.layout.listview_equips, parent, false);
-            TextView txtNomEquip = (TextView) rowView.findViewById(R.id.lblNomEquip);
+            TextView txtNomEquip = (TextView) rowView.findViewById(R.id.lblNomJugador);
             TextView txtCiutatEquip = (TextView) rowView.findViewById(R.id.txtCiutatEquip);
             ImageView imgEscut = (ImageView) rowView.findViewById(R.id.imgEscut);
 
