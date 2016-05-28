@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="0"
+            android:text="1"
             android:id="@+id/lblNumJornada"
             android:layout_weight="0.22"
             android:textAlignment="center" />

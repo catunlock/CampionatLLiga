@@ -46,7 +46,10 @@ public class AfegirJornada extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int numJornada = Integer.parseInt(lblNumJornada.getText().toString());
-                lblNumJornada.setText(String.valueOf(numJornada-1));
+                if (numJornada > 1) {
+                    lblNumJornada.setText(String.valueOf(numJornada-1));
+                }
+
             }
         });
 

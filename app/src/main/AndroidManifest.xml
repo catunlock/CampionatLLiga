@@ -43,11 +43,6 @@
             android:parentActivityName=".Equips"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AfegirEquipJugadors"
-            android:label="@string/title_activity_equip"
-            android:parentActivityName=".Equips"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".AnadirPartido"
             android:label="@string/title_activity_anadir_partido"
             android:parentActivityName=".visualizadoras.JornadaActivity"

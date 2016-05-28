@@ -79,7 +79,7 @@ public class Equip extends RealmObject {
 
     @Override
     public String toString() {
-        return "AfegirEquipJugadors{" +
+        return "EquipJugadors{" +
                 "nom='" + nom + '\'' +
                 ", ciutat='" + ciutat + '\'' +
                 ", pathEscut='" + pathEscut + '\'' +

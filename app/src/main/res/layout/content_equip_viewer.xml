@@ -22,46 +22,29 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/imgEscut"
-            android:layout_weight="0.31" />
+            android:id="@+id/imgEscut" />
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
             android:weightSum="1">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nom"
-                android:id="@+id/textView4"
+                android:id="@+id/lblNomEquip"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ciutat"
-                android:id="@+id/textView5"
+                android:id="@+id/lblNomCiutat"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="25dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="168dp"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtNomEquip" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtCiutatEquip" />
         </LinearLayout>
 
     </LinearLayout>

@@ -152,10 +152,12 @@ public class JornadaActivity extends AppCompatActivity {
             if (locked) {
                 locked = false;
                 item.setIcon(R.drawable.ic_lock_white_48dp);
+                btnCalendar.setImageResource(R.drawable.ic_today_blue_48px);
                 updateLockableElements();
             } else {
                 locked = true;
                 item.setIcon(R.drawable.ic_lock_open_white_48dp);
+                btnCalendar.setImageResource(R.drawable.ic_today_white_48dp);
                 updateDataBase();
                 updateLockableElements();
             }
