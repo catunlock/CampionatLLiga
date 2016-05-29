@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.sanchez.lopez.alberto.campionatlliga.model.Jornada;
 import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.JornadaActivity;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import io.realm.Realm;
@@ -129,10 +131,22 @@ public class Jornadas extends AppCompatActivity {
             Jornada j = jornadas.get(position);
 
             lblNumJornada.setText(String.valueOf(j.getNumJornada()));
-            lblData.setText(j.getData().getDay()+"/"+j.getData().getMonth()+"/"+j.getData().getYear());
+            lblData.setText(getStringDate(j.getData()));
             lblNumPartidos.setText(String.valueOf(j.getPartidos().size()));
 
             return rowView;
         }
     }
+
+    private String getStringDate(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
+        String month = String.valueOf(cal.get(Calendar.MONTH));
+        String year = String.valueOf(cal.get(Calendar.YEAR));
+
+        return day + "/" + month + "/" + year;
+    }
+
 }

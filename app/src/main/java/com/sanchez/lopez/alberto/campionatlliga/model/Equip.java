@@ -27,6 +27,18 @@ public class Equip extends RealmObject {
     int perduts;
     int empatats;
 
+    public void setPathEscut(String pathEscut) {
+        this.pathEscut = pathEscut;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setCiutat(String ciutat) {
+        this.ciutat = ciutat;
+    }
+
     public int getGuanyats() {
         return guanyats;
     }
@@ -37,6 +49,18 @@ public class Equip extends RealmObject {
 
     public int getEmpatats() {
         return empatats;
+    }
+
+    public void setGuanyats(int guanyats) {
+        this.guanyats = guanyats;
+    }
+
+    public void setPerduts(int perduts) {
+        this.perduts = perduts;
+    }
+
+    public void setEmpatats(int empatats) {
+        this.empatats = empatats;
     }
 
     public void empata() {

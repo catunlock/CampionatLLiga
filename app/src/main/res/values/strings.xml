@@ -15,4 +15,5 @@
     <string name="title_activity_jugadors">Jugadors</string>
     <string name="title_activity_equip_viewer">EquipViewer</string>
     <string name="action_edit">Edit</string>
+    <string name="title_activity_gallery">Gallery</string>
 </resources>

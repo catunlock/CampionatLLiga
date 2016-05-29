@@ -62,7 +62,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/imageView" >
+        android:layout_below="@+id/imageView18" >
 
         <LinearLayout
             android:orientation="vertical"

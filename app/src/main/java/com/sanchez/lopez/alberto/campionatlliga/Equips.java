@@ -64,6 +64,8 @@ public class Equips extends AppCompatActivity {
             }
 
         });
+
+
     }
 
     @Override

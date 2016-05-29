@@ -1,7 +1,9 @@
 package com.sanchez.lopez.alberto.campionatlliga;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import com.sanchez.lopez.alberto.campionatlliga.model.Jornada;
 import com.sanchez.lopez.alberto.campionatlliga.visualizadoras.JornadaActivity;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import io.realm.Realm;
@@ -88,12 +91,19 @@ public class AfegirJornada extends AppCompatActivity {
         }
 
         if (id == R.id.action_save) {
+
+            int numJornada = Integer.valueOf(lblNumJornada.getText().toString());
+
             realm.beginTransaction();
 
             Jornada j = new Jornada();
 
-            j.setData(new Date(datePicker.getYear(), datePicker.getMonth()+1, datePicker.getDayOfMonth()));
-            j.setNumJornada(Integer.valueOf(lblNumJornada.getText().toString()));
+            Calendar cal = Calendar.getInstance();
+            cal.set(datePicker.getYear(), datePicker.getMonth()+1, datePicker.getDayOfMonth());
+            Date date = new Date(cal.getTimeInMillis());
+
+            j.setData(date);
+            j.setNumJornada(numJornada);
             realm.copyToRealm(j);
             realm.commitTransaction();
 
@@ -103,10 +113,12 @@ public class AfegirJornada extends AppCompatActivity {
 
             startActivity(intent);
 
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }

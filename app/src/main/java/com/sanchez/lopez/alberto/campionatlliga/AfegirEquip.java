@@ -1,5 +1,7 @@
 package com.sanchez.lopez.alberto.campionatlliga;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -22,9 +25,12 @@ import io.realm.RealmConfiguration;
 
 public class AfegirEquip extends AppCompatActivity {
 
+    public static final int ESCUT_REQUEST = 1234;
+
     EditText txtNomEquip;
     EditText txtNomCiutat;
     ImageButton ibtnEscut;
+    Context context;
 
     ArrayList<EditText> txtNomTitulars = new ArrayList<>();
     ArrayList<EditText> txtNomReservas = new ArrayList<>();
@@ -42,6 +48,7 @@ public class AfegirEquip extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        context = this;
         // Create a RealmConfiguration which is to locate Realm file in package's "files" directory.
         realmConfig = new RealmConfiguration.Builder(this).build();
         realm = Realm.getInstance(realmConfig);
@@ -69,6 +76,14 @@ public class AfegirEquip extends AppCompatActivity {
         ibtnEscut.setImageResource(R.mipmap.ic_shield);
         ibtnEscut.setTag(R.mipmap.ic_shield);
 
+        ibtnEscut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, GalleryActivity.class);
+                startActivityForResult(i, ESCUT_REQUEST);
+            }
+        });
+
         Intent intent = getIntent();
         String nomEquip = intent.getStringExtra("nomEquip");
 
@@ -76,6 +91,23 @@ public class AfegirEquip extends AppCompatActivity {
             loadData(nomEquip);
         }
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (ESCUT_REQUEST) : {
+                if (resultCode == Activity.RESULT_OK) {
+                    int resourceId = data.getIntExtra("imgSelected", -1);
+                    if (resourceId != -1) {
+                        ibtnEscut.setImageResource(resourceId);
+                        ibtnEscut.setTag(resourceId);
+                    }
+                }
+                break;
+            }
+        }
     }
 
     private void loadData(String nomEquip) {
@@ -129,8 +161,12 @@ public class AfegirEquip extends AppCompatActivity {
             String nomCiutat = txtNomCiutat.getText().toString();
             String tagEscut = ibtnEscut.getTag().toString();
             if (equip == null) {
-                equip = new Equip(nomEquip, nomCiutat, tagEscut);
+                equip = new Equip();
             }
+
+            equip.setPathEscut(tagEscut);
+            equip.setNom(nomEquip);
+            equip.setCiutat(nomCiutat);
 
 
             List<Jugador> titulars = equip.getTitulars();
@@ -151,7 +187,7 @@ public class AfegirEquip extends AppCompatActivity {
             realm.commitTransaction();
 
             Intent intent = new Intent(this, EquipViewer.class);
-            intent.putExtra("nomEquip", nomEquip);
+            intent.putExtra("nomEquip", equip.getNom());
 
             startActivity(intent);
 

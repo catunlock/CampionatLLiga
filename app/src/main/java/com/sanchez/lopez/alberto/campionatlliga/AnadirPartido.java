@@ -47,7 +47,10 @@ public class AnadirPartido extends AppCompatActivity {
 
     private Equip equipCasa;
     private Equip equipFora;
+
     private Date date;
+    private Partido partido;
+    private int numJornada;
 
     private HashMap<String, Equip> mapEquips;
 
@@ -119,10 +122,12 @@ public class AnadirPartido extends AppCompatActivity {
                 for (int i = 0; i < 5; ++i) {
                     String nomTitularFora = equipFora.getTitulars().get(i).getNom();
                     lblNomTitularsFora.get(i).setText(nomTitularFora);
+
                 }
                 for (int i = 0; i < 7; ++i) {
                     String nomReservaFora = equipFora.getReservas().get(i).getNom();
                     lblNomReservaFora.get(i).setText(nomReservaFora);
+
                 }
 
             }
@@ -144,12 +149,12 @@ public class AnadirPartido extends AppCompatActivity {
                 for (int i = 0; i < 5; ++i) {
                     String nomTitularCasa = equipCasa.getTitulars().get(i).getNom();
                     lblNomTitularsCasa.get(i).setText(nomTitularCasa);
+
                 }
                 for (int i = 0; i < 7; ++i) {
                     String nomReservaCasa = equipCasa.getReservas().get(i).getNom();
                     lblNomReservaCasa.get(i).setText(nomReservaCasa);
                 }
-
             }
 
             @Override
@@ -158,6 +163,68 @@ public class AnadirPartido extends AppCompatActivity {
             }
         });
 
+        loadData();
+    }
+
+    private void loadData() {
+        Intent intent = getIntent();
+        long dataCreacio = intent.getLongExtra("dataCreacio", -1);
+
+        numJornada = intent.getIntExtra("numJornada", -1);
+        Log.println(Log.DEBUG, "[PARTIDO]", "Cargando partido: " + dataCreacio);
+
+        if (dataCreacio != -1) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            partido = realm.where(Partido.class).equalTo("dataCreacio", dataCreacio).findFirst();
+            date = partido.getDataRealitzat();
+
+            setTitle(getStringDate(date));
+
+            spnCasa.setSelection(getIndex(spnCasa, partido.getEquipA().getNom()));
+            spnFora.setSelection(getIndex(spnFora, partido.getEquipB().getNom()));
+
+            lblGolsCasa.setText(String.valueOf(partido.getGolsA()));
+            lblGolsFora.setText(String.valueOf(partido.getGolsB()));
+
+            for (int i = 0; i < 5 ; ++i){
+                int golTitularA = partido.getGolsTitularsA().get(i).value;
+                lblGolsTitularsCasa.get(i).setText(String.valueOf(golTitularA));
+                int golTitularB = partido.getGolsTitularsB().get(i).value;
+                lblGolsTitularsFora.get(i).setText(String.valueOf(golTitularB));
+            }
+
+            for (int i = 0; i < 7; ++i) {
+                int golReservaA = partido.getGolsReservasA().get(i).value;
+                lblGolsReservaCasa.get(i).setText(String.valueOf(golReservaA));
+                int golReservaB = partido.getGolsReservasB().get(i).value;
+                lblGolsReservaFora.get(i).setText(String.valueOf(golReservaB));
+            }
+        }
+    }
+
+    private String getStringDate(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
+        String month = String.valueOf(cal.get(Calendar.MONTH));
+        String year = String.valueOf(cal.get(Calendar.YEAR));
+
+        return day + "/" + month + "/" + year;
+    }
+
+    //private method of your class
+    private int getIndex(Spinner spinner, String myString)
+    {
+        int index = 0;
+
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     @Override
@@ -424,13 +491,11 @@ public class AnadirPartido extends AppCompatActivity {
 
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-        String fecha = String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear+1)
-                + "/" + String.valueOf(year);
-        Log.println(Log.DEBUG,"FECHA ELEGIDA", fecha);
+            Calendar cal = Calendar.getInstance();
+            cal.set(year, monthOfYear+1, dayOfMonth);
 
-        setTitle(fecha);
-
-        date = new Date(year, monthOfYear+1, dayOfMonth);
+            date = new Date(cal.getTimeInMillis());
+            setTitle(getStringDate(date));
         }
     };
 
@@ -457,14 +522,19 @@ public class AnadirPartido extends AppCompatActivity {
     }
 
     private void guardarPartit(boolean tanca) {
-        Intent intent = getIntent();
-        int numJornada = intent.getIntExtra("numJornada",-1);
-
         Jornada j = realm.where(Jornada.class).equalTo("numJornada", numJornada).findFirst();
 
         realm.beginTransaction();
 
-        Partido p = new Partido();
+        Partido p;
+        if (partido == null) {
+            p = new Partido();
+        } else {
+            p = partido;
+            p.desferResultat();
+            j.getPartidos().remove(p);
+        }
+
         p.setEquipA(equipCasa);
         p.setEquipB(equipFora);
         p.setDataRealitzat(date);
@@ -475,11 +545,17 @@ public class AnadirPartido extends AppCompatActivity {
         for (int i = 0; i < 5; ++i) {
             p.getEquipA().getTitulars().get(i).addGols(Integer.valueOf(lblGolsTitularsCasa.get(i).getText().toString()));
             p.getEquipB().getTitulars().get(i).addGols(Integer.valueOf(lblGolsTitularsFora.get(i).getText().toString()));
+
+            p.getGolsTitularsA().get(i).value = Integer.valueOf(lblGolsTitularsCasa.get(i).getText().toString());
+            p.getGolsTitularsB().get(i).value = Integer.valueOf(lblGolsTitularsFora.get(i).getText().toString());
         }
 
         for (int i = 0; i < 7; ++i) {
             p.getEquipA().getReservas().get(i).addGols(Integer.valueOf(lblGolsReservaCasa.get(i).getText().toString()));
             p.getEquipB().getReservas().get(i).addGols(Integer.valueOf(lblGolsReservaFora.get(i).getText().toString()));
+
+            p.getGolsReservasA().get(i).value = Integer.valueOf(lblGolsReservaCasa.get(i).getText().toString());
+            p.getGolsReservasB().get(i).value = Integer.valueOf(lblGolsReservaFora.get(i).getText().toString());
         }
 
         if (p.getGolsA() == p.getGolsB()) {
@@ -500,7 +576,7 @@ public class AnadirPartido extends AppCompatActivity {
 
         if (tanca) {
             Intent intentTanca = new Intent(this, JornadaActivity.class);
-            intentTanca.putExtra("numJornada", j.getNumJornada());
+            intentTanca.putExtra("numJornada", numJornada);
             startActivity(intentTanca);
         }
 

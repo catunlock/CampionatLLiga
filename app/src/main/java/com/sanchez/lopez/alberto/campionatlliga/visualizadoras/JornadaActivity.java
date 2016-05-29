@@ -54,6 +54,8 @@ public class JornadaActivity extends AppCompatActivity {
     private TextView lblNumPartits;
     private ImageButton btnCalendar;
 
+    private Date date;
+
     private Context context;
 
     @Override
@@ -105,6 +107,7 @@ public class JornadaActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(context, AnadirPartido.class);
                 intent.putExtra("dataCreacio", partido.getDataCreacio());
+                intent.putExtra("numJornada", jornada.getNumJornada());
                 startActivity(intent);
             }
 
@@ -120,8 +123,10 @@ public class JornadaActivity extends AppCompatActivity {
             Log.println(Log.DEBUG, "[JORNADA]", "Cargando jornada: " + numJornada);
             jornada = realm.where(Jornada.class).equalTo("numJornada", numJornada).findFirst();
 
-            setLabelData(jornada.getData());
+            lblData.setText(getStringDate(jornada.getData()));
             txtNum.setText(String.valueOf(numJornada));
+
+            setTitle("Jornada " + String.valueOf(numJornada));
 
             final MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this);
             listPartit.setAdapter(adapter);
@@ -173,9 +178,12 @@ public class JornadaActivity extends AppCompatActivity {
     }
 
     private void updateDataBase() {
-        //realm.beginTransaction();
+        realm.beginTransaction();
 
-        //realm.commitTransaction();
+        jornada.setData(date);
+        jornada.setNumJornada(Integer.valueOf(txtNum.getText().toString()));
+
+        realm.commitTransaction();
     }
 
     private class MySimpleArrayAdapter extends ArrayAdapter<Partido> {
@@ -256,20 +264,22 @@ public class JornadaActivity extends AppCompatActivity {
 
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
+            Calendar cal = Calendar.getInstance();
+            cal.set(year, monthOfYear + 1, dayOfMonth);
 
-            Date newDate = new Date(year, monthOfYear+1, dayOfMonth);
-            realm.beginTransaction();
-            jornada.setData(newDate);
-            realm.commitTransaction();
-            setLabelData(newDate);
+            date = new Date(cal.getTimeInMillis());
+            lblData.setText(getStringDate(date));
         }
     };
 
-    private void setLabelData(Date date){
-        String fecha = String.valueOf(date.getDay()) + "/" + String.valueOf(date.getMonth())
-                + "/" + String.valueOf(date.getYear());
+    private String getStringDate(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
 
-        Log.println(Log.DEBUG,"FECHA ELEGIDA", fecha);
-        lblData.setText(fecha);
+        String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
+        String month = String.valueOf(cal.get(Calendar.MONTH));
+        String year = String.valueOf(cal.get(Calendar.YEAR));
+
+        return day + "/" + month + "/" + year;
     }
 }

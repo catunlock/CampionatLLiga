@@ -75,6 +75,10 @@
             android:name=".visualizadoras.EquipViewer"
             android:label="@string/title_activity_equip_viewer"
             android:parentActivityName=".Equips"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GalleryActivity"
+            android:label="@string/title_activity_gallery"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
